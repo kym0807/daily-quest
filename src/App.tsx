@@ -1,8 +1,8 @@
-import { createBrowserRouter, RouterProvider } from "react-router";
-import { routes } from "@/routes";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { createBrowserRouter, RouterProvider } from "react-router";
 import { queryClient } from "@/query/query-client";
+import { routes } from "@/routes";
 
 const router = createBrowserRouter(routes);
 
