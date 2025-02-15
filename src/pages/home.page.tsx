@@ -1,3 +1,9 @@
+import { DailyTodo } from '@/components/todo/daily-todo';
+
 export const HomePage = () => {
-  return <div>HomePage</div>;
+  return (
+    <div>
+      <DailyTodo />
+    </div>
+  );
 };
