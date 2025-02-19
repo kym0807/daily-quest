@@ -1,3 +1,4 @@
+import { Todo } from '@/types/todo.type';
 import {
   Accordion,
   AccordionContent,
@@ -6,15 +7,19 @@ import {
 } from '../ui/accordion';
 import { TodoContent } from './todo-content';
 
-export const TodoItem = () => {
+type TodoItemProps = {
+  todo: Todo;
+};
+
+export const TodoItem = ({ todo }: TodoItemProps) => {
   return (
     <Accordion type="multiple" className="border px-4">
-      <AccordionItem value="todo-1">
+      <AccordionItem value={todo.id}>
         <AccordionTrigger className="cursor-pointer">
-          Todo Sample
+          {todo.title}
         </AccordionTrigger>
         <AccordionContent>
-          <TodoContent />
+          <TodoContent todo={todo} />
         </AccordionContent>
       </AccordionItem>
     </Accordion>

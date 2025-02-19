@@ -1,4 +1,5 @@
 import { ComponentProps } from 'react';
+import { todos } from '@/constants/data';
 import { cn } from '@/lib/utils';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { TodoItem } from './todo-item';
@@ -14,7 +15,9 @@ export const TodoList = ({ todoTitle, className, ...rest }: TodoListProps) => {
         <CardTitle>{todoTitle}</CardTitle>
       </CardHeader>
       <CardContent>
-        <TodoItem />
+        {todos.map((todo) => (
+          <TodoItem key={todo.id} todo={todo} />
+        ))}
       </CardContent>
     </Card>
   );
