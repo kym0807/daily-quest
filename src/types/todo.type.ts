@@ -1,8 +1,9 @@
-// TODO: 변경 가능성 있음
-export type Todo = {
+type TodoPriority = 'high' | 'medium' | 'low';
+export type TodoType = {
   id: string;
   title: string;
-  description: string;
+  description?: string;
+  completed: boolean;
+  priority: TodoPriority;
   tags: string[];
-  detail: string;
 };

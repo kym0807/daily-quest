@@ -1,37 +1,60 @@
-import { Todo } from '@/types/todo.type';
-import { Badge } from '../ui/badge';
+import { TodoType } from '@/types/todo.type';
 import { Button } from '../ui/button';
-import { Switch } from '../ui/switch';
-import { Textarea } from '../ui/textarea';
+import { Checkbox } from '../ui/checkbox';
 
-type TodoContentProps = {
-  todo: Todo;
-};
-
-export const TodoContent = ({ todo }: TodoContentProps) => {
+export const TodoContent = ({
+  todos,
+  toggleTodo,
+}: {
+  todos: TodoType[];
+  toggleTodo: (id: string) => void;
+}) => {
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex items-center justify-between">
-        <h2>{todo.description}</h2>
-      </div>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          {todo.tags.map((tag) => (
-            <Badge key={tag}>{tag}</Badge>
-          ))}
-        </div>
-        <div className="flex items-center gap-2">
-          <span>미완료</span>
-          <Switch className="cursor-pointer" />
-          <span>완료</span>
-        </div>
-      </div>
-      <div className="flex items-center justify-between gap-2.5">
-        <Textarea className="h-12 w-full" value={todo.detail} />
-        <Button type="submit" className="h-14 cursor-pointer">
-          저장
-        </Button>
-      </div>
-    </div>
+    <ul className="space-y-2">
+      {todos.map((todo) => (
+        <li
+          key={todo.id}
+          className="flex items-center justify-between rounded border p-2"
+        >
+          <div className="flex items-center gap-3">
+            <Checkbox
+              checked={todo.completed}
+              onCheckedChange={() => toggleTodo(todo.id)}
+              className="z-20"
+            />
+            <div>
+              <p
+                className={`font-medium ${
+                  todo.completed ? 'text-muted-foreground line-through' : ''
+                }`}
+              >
+                {todo.title}
+              </p>
+              {todo.description && (
+                <p className="text-muted-foreground text-sm">
+                  {todo.description}
+                </p>
+              )}
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <span
+              className={`rounded px-2 py-1 text-xs ${
+                todo.priority === 'high'
+                  ? 'bg-red-500 text-white'
+                  : todo.priority === 'medium'
+                    ? 'bg-yellow-500 text-black'
+                    : 'bg-green-500 text-white'
+              }`}
+            >
+              {todo.priority.toUpperCase()}
+            </span>
+            <Button variant="ghost" size="sm">
+              보기
+            </Button>
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 };

@@ -1,17 +1,21 @@
+import { TodoType } from '@/types/todo.type';
+
 // TODO: 백엔드 완료시 파일 삭제 필요
-export const todos = [
+export const todos: TodoType[] = [
   {
     id: '1',
-    title: 'TODO 01',
-    description: 'todo 예시 1번입니다.',
-    tags: ['test1', 'test2'],
-    detail: '',
+    title: '회의 준비',
+    description: '프로젝트 회의 자료 준비',
+    completed: false,
+    priority: 'high',
+    tags: ['회의', '중요'],
   },
   {
     id: '2',
-    title: 'TODO 02',
-    description: 'todo 예시 2번입니다.',
-    tags: ['test2'],
-    detail: '예시 텍스트입니다.',
+    title: '이메일 답변',
+    description: '고객 문의 이메일 확인 및 답변',
+    completed: true,
+    priority: 'medium',
+    tags: ['이메일'],
   },
 ];
